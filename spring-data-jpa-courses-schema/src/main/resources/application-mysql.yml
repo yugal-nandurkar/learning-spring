@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: spring-data-jpa
+  datasource:
+    url: jdbc:mysql://localhost:3306/data_jpa?createDatabaseIfNotExist=true
+    username: root
+    password: itstitst
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    show-sql: true
+
+server:
+  port: 8082  # Set the application to run on port 8082
