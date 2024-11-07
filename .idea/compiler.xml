@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springboot-in-10-steps" />
+        <module name="spring-data-jpa" />
+        <module name="serving-web-content" />
+        <module name="junit-in-5-steps" />
+        <module name="spring-in-5-steps" />
+        <module name="spring-with-jdbc" />
+        <module name="demo" />
+        <module name="spring-aspect-op" />
+        <module name="spring-in-5-steps (1)" />
+        <module name="spring-in-5-steps (2)" />
+        <module name="mockito-in-5-steps" />
+        <module name="actuator-service" />
+        <module name="securing-web" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="actuator-service" options="-parameters" />
+      <module name="demo" options="-parameters" />
+      <module name="mockito-in-5-steps" options="-parameters" />
+      <module name="securing-web" options="-parameters" />
+      <module name="serving-web-content" options="-parameters" />
+      <module name="spring-aspect-op" options="-parameters" />
+      <module name="spring-data-jpa" options="-parameters" />
+      <module name="spring-in-5-steps" options="-parameters" />
+      <module name="spring-in-5-steps (1)" options="-parameters" />
+      <module name="spring-in-5-steps (2)" options="-parameters" />
+      <module name="spring-with-jdbc" options="-parameters" />
+      <module name="springboot-in-10-steps" options="-parameters" />
+    </option>
+  </component>
+</project>

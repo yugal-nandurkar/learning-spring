@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/kotlin-spring-chat" />
+        <option name="gradleJvm" value="azul-13" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/kotlin-spring-chat" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/springboot-online-tutorial" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/springboot-online-tutorial" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/springboot-starter-turorial" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/springboot-starter-turorial" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
