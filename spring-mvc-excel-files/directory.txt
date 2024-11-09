@@ -1,0 +1,47 @@
+excel-utilities-project
+├── .gitignore
+├── pom.xml                     # If Maven is used to manage dependencies
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── microteam
+    │   │           └── excelutils
+    │   │               ├── config
+    │   │               │   └── ExcelConfig.java         # Configuration for Apache POI settings
+    │   │               ├── core
+    │   │               │   ├── ExcelReader.java         # Core utility class for reading Excel files
+    │   │               │   ├── ExcelWriter.java         # Core utility class for writing to Excel files
+    │   │               │   ├── ExcelFormatter.java      # Core utility for formatting cells, rows, sheets
+    │   │               │   └── ExcelValidator.java      # Validation utilities for Excel content
+    │   │               ├── features
+    │   │               │   ├── ExcelChartHelper.java    # Helper utilities for chart creation
+    │   │               │   ├── ExcelPivotHelper.java    # Utilities for handling pivot tables
+    │   │               │   └── ExcelFormulaHelper.java  # Helper for handling formulas and calculations
+    │   │               ├── models
+    │   │               │   └── ExcelDataModel.java      # POJOs for data representation
+    │   │               ├── service
+    │   │               │   └── ExcelFileService.java    # Service layer to handle complex operations
+    │   │               └── utils
+    │   │                   ├── ExcelFileUtils.java      # Utility methods for file handling, e.g., file type validation
+    │   │                   └── ExcelStyleUtils.java     # Helper for custom styles and themes
+    │   └── resources
+    │       └── templates                                  # Excel templates (if any)
+    │           ├── sample_template.xlsx
+    │           └── ...
+    └── test
+        ├── java
+        │   └── com
+        │       └── microteam
+        │           └── excelutils
+        │               ├── core
+        │               │   ├── ExcelReaderTest.java
+        │               │   ├── ExcelWriterTest.java
+        │               ├── features
+        │               │   ├── ExcelChartHelperTest.java
+        │               │   └── ExcelPivotHelperTest.java
+        │               └── service
+        │                   └── ExcelFileServiceTest.java
+        └── resources                                      # Test resources, such as sample Excel files
+            ├── test_data.xlsx
+            └── ...
