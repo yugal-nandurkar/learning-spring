@@ -8,277 +8,72 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Archetype - spring-mvc-excel-files</name>
-    <url>http://maven.apache.org</url>
-    <properties>
-        <spring-cloud.version>2023.0.3</spring-cloud.version>
-    </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <!-- Spring WebMVC for basic web handling -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>6.1.14</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <!-- Apache POI for Excel support -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.18.1</version>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.3.0</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.17.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>4.0.5</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.htmlunit/htmlunit -->
-        <dependency>
-            <groupId>org.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>4.6.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.3.4</version>
-        </dependency>
-
-        <!-- excel -->
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.3.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/jakarta.el/jakarta.el-api -->
-        <dependency>
-            <groupId>jakarta.el</groupId>
-            <artifactId>jakarta.el-api</artifactId>
-            <version>6.0.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api -->
-        <dependency>
-            <groupId>jakarta.servlet.jsp</groupId>
-            <artifactId>jakarta.servlet.jsp-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
-        <dependency>
-            <groupId>jakarta.servlet.jsp.jstl</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <version>11.0.0</version>
-        </dependency>
-
-        <!-- Thymeleaf -->
-        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring6 -->
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring6</artifactId>
-            <version>3.1.2.RELEASE</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf</artifactId>
-            <version>3.1.2.RELEASE</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>3.3.5</version>
-        </dependency>
-
-        <!-- Extras -->
-        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-catalina</artifactId>
-            <version>11.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.3.5</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.restdocs/spring-restdocs-mockmvc -->
-        <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
-            <version>3.0.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Working with Microsoft Excel in Java -->
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>5.3.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.jxls/jxls-jexcel -->
-        <dependency>
-            <groupId>org.jxls</groupId>
-            <artifactId>jxls-jexcel</artifactId>
-            <version>1.0.9</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.dhatim/fastexcel-reader -->
-        <dependency>
-            <groupId>org.dhatim</groupId>
-            <artifactId>fastexcel-reader</artifactId>
-            <version>0.18.4</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.dhatim/fastexcel -->
-        <dependency>
-            <groupId>org.dhatim</groupId>
-            <artifactId>fastexcel</artifactId>
-            <version>0.18.4</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-hateoas</artifactId>
-            <version>3.3.5</version>
-        </dependency>
-
-        <!-- Tutorials/Apache-POI -->
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>3.0.0-beta2</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>3.0.0-beta2</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.github.ozlerhakan/poiji -->
-        <dependency>
-            <groupId>com.github.ozlerhakan</groupId>
-            <artifactId>poiji</artifactId>
-            <version>4.6.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <version>3.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.11.3</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
-        <dependency>
-            <groupId>org.apache.xmlbeans</groupId>
-            <artifactId>xmlbeans</artifactId>
-            <version>5.2.2</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+        <!-- JFreeChart for chart creation -->
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
             <version>1.5.5</version>
         </dependency>
 
+        <!-- Commons IO for file handling -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.17.0</version>
+        </dependency>
 
+        <!-- Logging with Log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>3.0.0-beta2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>3.0.0-beta2</version>
+        </dependency>
+
+        <!-- JUnit for testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.3</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.2</version>
-                    <configuration>
-                        <port>8081</port> <!-- Specify the port here -->
-                        <path>/</path>
-                        <contextReloadable>true</contextReloadable>
-                    </configuration>
-                </plugin>
 
-                <plugin>
-                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>4.0.0-beta-1</version>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
-                        <nonFilteredFileExtensions>
-                            <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
-                            <nonFilteredFileExtension>xls</nonFilteredFileExtension>
-                        </nonFilteredFileExtensions>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+    <build>
         <plugins>
+            <!-- Compiler plugin for Java 17 compatibility -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>23</source>
-                    <target>23</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
