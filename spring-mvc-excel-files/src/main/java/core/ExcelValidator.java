@@ -1,15 +1,20 @@
 package core;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
 public class ExcelValidator {
 
-    private Workbook workbook;
+    public Workbook workbook;
 
     public ExcelValidator(String filePath) throws IOException {
         try (FileInputStream fileInputStream = new FileInputStream(new File(filePath))) {
@@ -88,6 +93,69 @@ public class ExcelValidator {
         // Example validation: check if the first row has content in the first cell
         Row row = sheet.getRow(0);
         return row != null && row.getCell(0) != null && !row.getCell(0).getStringCellValue().isEmpty();
+    }
+
+    public static void generateValidationReport(List<String> sheetNames, String reportFilePath) {
+        try (XWPFDocument doc = new XWPFDocument()) {
+            // Create title paragraph
+            XWPFParagraph title = doc.createParagraph();
+            title.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun run = title.createRun();
+            run.setText("Excel Validation Report");
+            run.setBold(true);
+            run.setFontSize(16);
+            title.createRun().addBreak();
+
+            // Loop through each sheet to validate and add result to the report
+            for (String sheetName : sheetNames) {
+                validateSheet(sheetName, doc);
+            }
+
+            // Save the document to file
+            try (FileOutputStream fileOut = new FileOutputStream(reportFilePath)) {
+                doc.write(fileOut);
+                System.out.println("Validation report has been saved to: " + reportFilePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to validate a sheet and append results to the report
+    private static void validateSheet(String sheetName, XWPFDocument doc) {
+        try {
+            // Load the sheet and validate its content
+            Workbook workbook = WorkbookFactory.create(new File(sheetName));
+            Sheet sheet = workbook.getSheetAt(0);  // Assuming we want to validate the first sheet in each file
+            XWPFParagraph paragraph = doc.createParagraph();
+            paragraph.createRun().setText("Validating Sheet: " + sheetName);
+            paragraph.createRun().addBreak();
+
+            // Example: validate headers (You can customize this logic)
+            String[] expectedHeaders = {"product", "price", "quantity", "total"};
+            boolean headersValid = validateHeaders(sheet, expectedHeaders);
+            if (headersValid) {
+                paragraph.createRun().setText("Headers are valid.");
+            } else {
+                paragraph.createRun().setText("Headers are invalid.");
+            }
+            paragraph.createRun().addBreak();
+        } catch (IOException e) {
+            XWPFParagraph errorParagraph = doc.createParagraph();
+            errorParagraph.createRun().setText("Error validating sheet: " + sheetName);
+            errorParagraph.createRun().addBreak();
+        }
+    }
+
+    // Method to validate headers in a sheet
+    private static boolean validateHeaders(Sheet sheet, String[] expectedHeaders) {
+        Row headerRow = sheet.getRow(0);
+        for (int i = 0; i < expectedHeaders.length; i++) {
+            if (headerRow.getCell(i) == null || !headerRow.getCell(i).getStringCellValue().equals(expectedHeaders[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

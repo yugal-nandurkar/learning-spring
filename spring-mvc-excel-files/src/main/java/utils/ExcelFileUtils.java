@@ -152,7 +152,7 @@ public class ExcelFileUtils {
     }
 
     public static void main(String[] args) throws IOException {
-        String filePath = "test_data.xlsx";
+        String filePath = "src/main/resources/sales_data.xlsx";
 
         // Create directories if necessary
         createDirectories(filePath);

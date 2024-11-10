@@ -144,7 +144,7 @@ public class ExcelTemplateGenerator {
     // Main method to test the template creation
     public static void main(String[] args) {
         try {
-            generateSampleTemplate("sample_template.xlsx");
+            generateSampleTemplate("src/main/resources/sample_template.xlsx");
             System.out.println("Sample template created successfully!");
         } catch (IOException e) {
             e.printStackTrace();

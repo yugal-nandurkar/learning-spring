@@ -235,7 +235,8 @@ public class ExcelStyleUtils {
             applyStylesAndWriteData(sheet);
 
             // Save the workbook to a file
-            saveExcelFile(workbook, "styled_example.xlsx");
+            saveExcelFile(workbook, "src/main/resources/styled_example.xlsx");
+            System.out.println("styled_example.xlsx created in resources");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -255,4 +256,54 @@ public class ExcelStyleUtils {
         }
     }
 
+    // Method to apply styles to an Excel file
+    public static void applyStyles(File inputFile) {
+        try (FileInputStream fis = new FileInputStream(inputFile)) {
+            // Using WorkbookFactory to handle both XSSF and HSSF workbooks
+            Workbook workbook = WorkbookFactory.create(fis);
+            Sheet sheet = workbook.getSheetAt(0);  // Get the first sheet
+
+            // Create a new font and style for headers
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setColor(IndexedColors.WHITE.getIndex());
+
+            // Create a cell style for the header row
+            CellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFont(headerFont);
+            headerStyle.setFillForegroundColor(IndexedColors.BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            headerStyle.setAlignment(HorizontalAlignment.CENTER);
+
+            // Apply the style to the header row (assuming headers are in the first row)
+            Row headerRow = sheet.getRow(0);
+            if (headerRow != null) {
+                for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+                    headerRow.getCell(i).setCellStyle(headerStyle);
+                }
+            }
+
+            // Apply border style to all cells
+            CellStyle borderStyle = workbook.createCellStyle();
+            borderStyle.setBorderBottom(BorderStyle.THIN);
+            borderStyle.setBorderTop(BorderStyle.THIN);
+            borderStyle.setBorderLeft(BorderStyle.THIN);
+            borderStyle.setBorderRight(BorderStyle.THIN);
+
+            // Apply the border style to all rows and columns
+            for (Row row : sheet) {
+                for (Cell cell : row) {
+                    cell.setCellStyle(borderStyle);
+                }
+            }
+
+            // Save the workbook with styles applied
+            try (FileOutputStream fos = new FileOutputStream(inputFile)) {
+                workbook.write(fos);
+                System.out.println("Styles applied to file: " + inputFile.getName());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

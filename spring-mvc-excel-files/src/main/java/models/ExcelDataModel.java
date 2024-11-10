@@ -11,15 +11,58 @@ import java.util.stream.Collectors;
 public class ExcelDataModel {
 
     // Data model class for a single row in the Excel sheet
-    public class SalesData {
+    public static class SalesData {
         // Directly accessible fields
         public String product;
         public double price;
         public int quantity;
         public double total;
+
+        // Constructor to initialize SalesData
+        public SalesData(String product, double price, int quantity, double total) {
+            this.product = product;
+            this.price = price;
+            this.quantity = quantity;
+            this.total = total;
+        }
+
+        public SalesData() {
+
+        }
     }
 
-    // Main class-level method to read data from an Excel file and map it to a list of SalesData objects
+    // A field for SalesData in the ExcelDataModel
+    public SalesData salesData;
+
+    // Constructor for ExcelDataModel
+    public ExcelDataModel() {}
+
+    // Constructor for ExcelDataModel with parameters
+    public ExcelDataModel(String product, double price, int quantity) {
+        this.salesData = new SalesData(product, price, quantity, price * quantity);  // Calculate total from price * quantity
+    }
+
+    // Method to map SalesData to ExcelDataModel
+    public ExcelDataModel mapSalesDataToExcelDataModel(SalesData salesData) {
+        ExcelDataModel model = new ExcelDataModel();
+        model.salesData = salesData;  // Assign the SalesData to the ExcelDataModel's field
+        return model;
+    }
+
+    // Method to use streams for converting SalesData list to ExcelDataModel list
+    public List<ExcelDataModel> convertSalesDataToExcelDataModel(List<SalesData> salesDataList) {
+        return salesDataList.stream()
+                .map(this::mapSalesDataToExcelDataModel)
+                .collect(Collectors.toList());
+    }
+
+    // Method to read Excel file data and return it as a list of ExcelDataModel
+    public List<ExcelDataModel> readExcelFileAsExcelDataModel(String filePath) throws IOException {
+        List<SalesData> salesDataList = readExcelData(filePath);
+        return convertSalesDataToExcelDataModel(salesDataList);
+    }
+
+    // Method to read data from an Excel file and map it to a list of SalesData objects
     public List<SalesData> readExcelData(String filePath) throws IOException {
         List<SalesData> salesDataList = new ArrayList<>();
 
@@ -35,43 +78,22 @@ public class ExcelDataModel {
                     continue;
                 }
 
-                SalesData data = new SalesData();
+                String product = row.getCell(0) != null ? row.getCell(0).getStringCellValue() : "Unknown Product";
+                double price = row.getCell(1) != null ? row.getCell(1).getNumericCellValue() : 0.0;
+                int quantity = row.getCell(2) != null ? (int) row.getCell(2).getNumericCellValue() : 0;
+                double total = row.getCell(3) != null ? row.getCell(3).getNumericCellValue() : 0.0;
 
-                // Directly assign values to fields (no need for setters)
-                data.product = row.getCell(0).getStringCellValue();  // Set product name
-                data.price = row.getCell(1).getNumericCellValue();   // Set product price
-                data.quantity = (int) row.getCell(2).getNumericCellValue(); // Set quantity
-                data.total = row.getCell(3).getNumericCellValue();  // Set total
-
-                // Add to the list
-                salesDataList.add(data);
+                // Only add data if it's valid (no null or invalid values)
+                if (product != null && !product.isEmpty() && price > 0 && quantity > 0) {
+                    SalesData data = new SalesData(product, price, quantity, total);
+                    salesDataList.add(data);
+                } else {
+                    System.out.println("Skipping invalid data row: " + row.getRowNum());
+                }
             }
         }
 
         return salesDataList;
-    }
-
-    // Method to map SalesData to ExcelDataModel
-    public ExcelDataModel mapSalesDataToExcelDataModel(SalesData salesData) {
-        ExcelDataModel model = new ExcelDataModel();
-        model.setProduct(salesData.product);
-        model.setPrice(salesData.price);
-        model.setQuantity(salesData.quantity);
-        model.setTotal(salesData.total);
-        return model;
-    }
-
-    // Method to use streams for converting SalesData list to ExcelDataModel list
-    public List<ExcelDataModel> convertSalesDataToExcelDataModel(List<SalesData> salesDataList) {
-        return salesDataList.stream()
-                .map(this::mapSalesDataToExcelDataModel)
-                .collect(Collectors.toList());
-    }
-
-    // Method to read Excel file data and return it as a list of ExcelDataModel
-    public List<ExcelDataModel> readExcelFileAsExcelDataModel(String filePath) throws IOException {
-        List<SalesData> salesDataList = readExcelData(filePath);
-        return convertSalesDataToExcelDataModel(salesDataList);
     }
 
     // Method to write ExcelDataModel list to an Excel file
@@ -91,11 +113,13 @@ public class ExcelDataModel {
         // Populate the data rows from ExcelDataModel
         int rowIndex = 1;
         for (ExcelDataModel model : excelDataModels) {
-            Row row = sheet.createRow(rowIndex++);
-            row.createCell(0).setCellValue(model.getProduct());
-            row.createCell(1).setCellValue(model.getPrice());
-            row.createCell(2).setCellValue(model.getQuantity());
-            row.createCell(3).setCellValue(model.getTotal());
+            if (model.salesData != null) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(model.salesData.product);
+                row.createCell(1).setCellValue(model.salesData.price);
+                row.createCell(2).setCellValue(model.salesData.quantity);
+                row.createCell(3).setCellValue(model.salesData.total);
+            }
         }
 
         // Write the output to a file
@@ -104,7 +128,7 @@ public class ExcelDataModel {
         }
     }
 
-    // Placeholder getter and setter methods for ExcelDataModel
+    // Placeholder getter and setter methods for ExcelDataModel fields
     private String product;
     private double price;
     private int quantity;
@@ -152,21 +176,25 @@ public class ExcelDataModel {
         ExcelDataModel model = new ExcelDataModel();
 
         // Reading data from an existing Excel file
-        List<SalesData> salesDataList = model.readExcelData("sales_data.xlsx");
+        List<SalesData> salesDataList = model.readExcelData("src/main/resources/sales_data.xlsx");
 
         // Print out read data (for demonstration)
         for (SalesData data : salesDataList) {
-            System.out.println("Product: " + data.product + ", Price: " + data.price + ", Quantity: " + data.quantity + ", Total: " + data.total);
+            if (data != null) {
+                System.out.println("Product: " + data.product + ", Price: " + data.price + ", Quantity: " + data.quantity + ", Total: " + data.total);
+            }
         }
 
         // Converting SalesData to ExcelDataModel
         List<ExcelDataModel> excelDataModels = model.convertSalesDataToExcelDataModel(salesDataList);
         for (ExcelDataModel data : excelDataModels) {
-            System.out.println("Product: " + data.getProduct() + ", Price: " + data.getPrice() + ", Quantity: " + data.getQuantity() + ", Total: " + data.getTotal());
+            if (data.salesData != null) {
+                System.out.println("Product: " + data.salesData.product + ", Price: " + data.salesData.price + ", Quantity: " + data.salesData.quantity + ", Total: " + data.salesData.total);
+            }
         }
 
         // Writing ExcelDataModel data to a new Excel file
-        model.writeExcelDataFromModel(excelDataModels, "sales_data_copy.xlsx");
+        model.writeExcelDataFromModel(excelDataModels, "src/main/resources/sales_data_copy.xlsx");
         System.out.println("Data has been written to 'sales_data_copy.xlsx'.");
     }
 }

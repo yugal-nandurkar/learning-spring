@@ -5,31 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01cc7d61-271a-43d9-baaa-4d22030df5f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/directory.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/config/ExcelConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/ExcelFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/ExcelReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/ExcelValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/ExcelWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/features/ExcelChartHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/features/ExcelFormulaHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/features/ExcelPivotHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/ExcelDataModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/ExcelFileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/ExcelFileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/ExcelStyleUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/ExcelTemplateGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/maven/archetype.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/main/java/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainChartMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainConfigurationMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainFormatMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainFormulaMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainReaderMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainValidMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/methods/MainWriterMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/methods/MainMethodsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-mvc-excel-files/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-mvc-excel-files/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-mvc-excel-files/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-mvc-excel-files/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-mvc-excel-files/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../spring-telusko/.idea/spring6yt.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../spring-telusko/Part19-Spring Data JPA with JpaRepository/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../spring-telusko/Part19-Spring Data JPA with JpaRepository/.idea/compiler.xml" afterDir="false" />
@@ -571,32 +560,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ExcelFormulaHelper.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/desk/Desktop/spring-baeldung/apache-poi&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.ExcelDataModel.executor": "Run",
+    "Application.ExcelFileService.executor": "Run",
+    "Application.ExcelFileUtils.executor": "Run",
+    "Application.ExcelFormulaHelper.executor": "Run",
+    "Application.ExcelPivotHelper.executor": "Run",
+    "Application.ExcelStyleUtils.executor": "Run",
+    "Application.ExcelTemplateGenerator.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MainChartMethods.executor": "Run",
+    "Application.MainConfigurationMethods.executor": "Run",
+    "Application.MainFormatMethods.executor": "Run",
+    "Application.MainFormulaMethods.executor": "Run",
+    "Application.MainMethods.executor": "Run",
+    "Application.MainReaderMethods.executor": "Run",
+    "Application.MainValidMethods.executor": "Run",
+    "Application.MainWriterMethods.executor": "Run",
+    "JUnit.MainMethodsTest.executor": "Run",
+    "JUnit.MainMethodsTest.testApplyHeaderStyles.executor": "Debug",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/desk/Documents/Projects/learning-spring/spring-mvc-excel-files-jfreecharts-poi",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="ExcelFormulaHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="features.ExcelFormulaHelper" />
+}]]></component>
+  <component name="RunManager" selected="JUnit.MainMethodsTest">
+    <configuration name="ExcelPivotHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="features.ExcelPivotHelper" />
       <module name="spring-mvc-excel-files" />
       <extension name="coverage">
         <pattern>
@@ -608,17 +612,67 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="ExcelStyleUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="utils.ExcelStyleUtils" />
       <module name="spring-mvc-excel-files" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExcelTemplateGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="utils.ExcelTemplateGenerator" />
+      <module name="spring-mvc-excel-files" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainMethods" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="methods.MainMethods" />
+      <module name="spring-mvc-excel-files" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="methods.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainMethodsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-mvc-excel-files" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="methods.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="methods" />
+      <option name="MAIN_CLASS_NAME" value="methods.MainMethodsTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.ExcelFormulaHelper" />
+        <item itemvalue="JUnit.MainMethodsTest" />
+        <item itemvalue="Application.ExcelPivotHelper" />
+        <item itemvalue="Application.MainMethods" />
+        <item itemvalue="Application.ExcelTemplateGenerator" />
+        <item itemvalue="Application.ExcelStyleUtils" />
       </list>
     </recent_temporary>
   </component>
@@ -639,11 +693,24 @@
       <option name="presentableId" value="Default" />
       <updated>1731140084601</updated>
       <workItem from="1731140085633" duration="22598000" />
-      <workItem from="1731164828269" duration="4147000" />
+      <workItem from="1731164828269" duration="5610000" />
+      <workItem from="1731172011809" duration="3506000" />
+      <workItem from="1731210918288" duration="21907000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/core/ExcelFormatter.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

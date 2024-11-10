@@ -150,7 +150,7 @@ public class ExcelFileService {
         ExcelFileService fileService = new ExcelFileService();
 
         // Reading data from an existing Excel file
-        List<List<String>> data = fileService.readExcelFile("existing_data.xlsx");
+        List<List<String>> data = fileService.readExcelFile("src/main/resources/sales_data.xlsx");
 
         // Print the data read from the file (for demonstration)
         for (List<String> row : data) {
@@ -167,16 +167,16 @@ public class ExcelFileService {
         newData.add(newRow);
 
         // Writing data to a new Excel file
-        fileService.writeExcelFile("new_data.xlsx", newData);
+        fileService.writeExcelFile("src/main/resources/new_data.xlsx", newData);
         System.out.println("Data has been written to 'new_data.xlsx'.");
 
         // Appending data to an existing Excel file
-        fileService.appendToExcelFile("existing_data.xlsx", newData);
-        System.out.println("Data has been appended to 'existing_data.xlsx'.");
+        fileService.appendToExcelFile("src/main/resources/sales_data_copy.xlsx", newData);
+        System.out.println("Data has been appended to 'sales_data_copy.xlsx'.");
 
         // Removing a row from an Excel file
-        fileService.removeRow("existing_data.xlsx", 1);
-        System.out.println("Row 1 has been removed from 'existing_data.xlsx'.");
+        fileService.removeRow("src/main/resources/sales_data_copy.xlsx", 1);
+        System.out.println("Row 1 has been removed from 'sales_data_copy.xlsx'.");
     }
 
     public void processExcelFile(String filePath) throws IOException {

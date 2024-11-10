@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.WorkbookUtil;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.XSSFPictureData;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
@@ -11,6 +12,17 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
+
+import org.apache.poi.ss.usermodel.*;
+
+import org.apache.poi.ss.usermodel.Drawing;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.ChartPanel;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.ChartUtils;
 
 public class ExcelChartHelper {
 

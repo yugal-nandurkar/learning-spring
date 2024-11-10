@@ -1,6 +1,7 @@
 package features;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.ss.util.WorkbookUtil;
@@ -45,35 +46,28 @@ public class ExcelPivotHelper {
         String dataRange = "A1:C" + (data.length + 1);  // A1:C7 based on the sample data
 
         // Create the pivot table sheet
-        Sheet pivotSheet = workbook.createSheet(WorkbookUtil.createSafeSheetName("Pivot Table"));
+        XSSFSheet pivotSheet = (XSSFSheet) workbook.createSheet(WorkbookUtil.createSafeSheetName("Pivot Table"));
 
-        // Here, we would normally add logic to create the pivot table, but as we're
-        // not using `XSSFPivotTable` or `HSSFPivotTable`, we simulate pivot-like behavior
-        // by creating a summarized view manually
+        // Define the pivot table
+        XSSFPivotTable pivotTable = (XSSFPivotTable) pivotSheet.createPivotTable(
+                new AreaReference(dataRange, workbook.getSpreadsheetVersion()), // Data range
+                new CellReference("E5"), // Location for pivot table (E5)
+                (XSSFSheet) sheet // Source data sheet
+        );
 
-        // Sample pivot table logic here: group by region and sum sales
-        pivotSheet.createRow(0).createCell(0).setCellValue("Region");
-        pivotSheet.createRow(1).createCell(0).setCellValue("North");
-        pivotSheet.createRow(2).createCell(0).setCellValue("South");
-        pivotSheet.createRow(3).createCell(0).setCellValue("East");
-        pivotSheet.createRow(4).createCell(0).setCellValue("West");
-
-        // Pivoted sales data by region (as an example, sum per region)
-        pivotSheet.createRow(0).createCell(1).setCellValue("Total Sales");
-        pivotSheet.createRow(1).createCell(1).setCellValue(1800);  // North Total Sales
-        pivotSheet.createRow(2).createCell(1).setCellValue(2300);  // South Total Sales
-        pivotSheet.createRow(3).createCell(1).setCellValue(3300);  // East Total Sales
-        pivotSheet.createRow(4).createCell(1).setCellValue(1200);  // West Total Sales
+        // Set up the pivot table by adding row and column labels, and data summary
+        pivotTable.addRowLabel(0);  // Region
+        pivotTable.addColumnLabel(DataConsolidateFunction.SUM, 2);  // Sales summed by region
 
         // Save the workbook to a file
-        try (FileOutputStream fileOut = new FileOutputStream("pivot_table_using_factory.xlsx")) {
+        try (FileOutputStream fileOut = new FileOutputStream("src/main/resources/pivot_table_using_factory.xlsx")) {
             workbook.write(fileOut);
         }
     }
 
     public static void main(String[] args) throws IOException {
         // Load the workbook using WorkbookFactory (which works for both .xls and .xlsx)
-        try (InputStream inp = ExcelPivotHelper.class.getResourceAsStream("/path/to/your/existing/excelfile.xlsx")) {
+        try (InputStream inp = ExcelPivotHelper.class.getResourceAsStream("/src/main/resources/pivot_table_using_factory.xlsx")) {
             Workbook workbook = WorkbookFactory.create(inp);  // Handles both .xls and .xlsx
 
             // Create a new sheet for the data

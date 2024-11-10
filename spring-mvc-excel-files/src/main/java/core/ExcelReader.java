@@ -24,11 +24,11 @@ public class ExcelReader {
 
         // Populate the Excel file with sample data
         Object[][] data = {
-                {"Template Item 1", 100.0, 2, 200.0},
-                {"Template Item 2", 200.0, 1, 200.0},
-                {"Template Item 3", 300.0, 5, 1500.0},
-                {"Template Item 4", 400.0, 3, 1200.0},
-                {"Template Item 5", 500.0, 4, 2000.0}
+                {"Template Item 1", 100.0, 1, 100.0},
+                {"Template Item 2", 200.0, 2, 400.0},
+                {"Template Item 3", 300.0, 3, 900.0},
+                {"Template Item 4", 400.0, 4, 1600.0},
+                {"Template Item 5", 500.0, 5, 2500.0}
         };
 
         // Add data rows to the sheet
@@ -65,13 +65,19 @@ public class ExcelReader {
                 ExcelDataModel dataModel = new ExcelDataModel();
 
                 // Assuming that SalesData is a nested static class within ExcelDataModel
-                ExcelDataModel.SalesData salesData = dataModel.new SalesData();
+                ExcelDataModel.SalesData salesData = new ExcelDataModel.SalesData();
 
                 // Safely retrieve each cell value
-                salesData.product = row.getCell(0).getStringCellValue(); // String cell
-                salesData.price = row.getCell(1).getNumericCellValue();  // Numeric cell
-                salesData.quantity = (int) row.getCell(2).getNumericCellValue();  // Numeric cell
-                salesData.total = row.getCell(3).getNumericCellValue();  // Numeric cell
+                salesData.product = getStringCellValue(row.getCell(0)); // String cell
+                salesData.price = getNumericCellValue(row.getCell(1));  // Numeric cell
+                salesData.quantity = (int) getNumericCellValue(row.getCell(2));  // Numeric cell
+                salesData.total = getNumericCellValue(row.getCell(3));  // Numeric cell
+
+                // Print debug statements for checking values
+                System.out.println("Product: " + salesData.product);
+                System.out.println("Price: " + salesData.price);
+                System.out.println("Quantity: " + salesData.quantity);
+                System.out.println("Total: " + salesData.total);
 
                 // Add the sales data to the data model
                 dataModels.add(dataModel);
@@ -81,27 +87,23 @@ public class ExcelReader {
         return dataModels;
     }
 
-    // Main method for testing the ExcelReader functionality
-    public static void main(String[] args) {
-        try {
-            String filePath = "input-file.xlsx"; // Update with your desired file path
-
-            ExcelReader excelReader = new ExcelReader();
-
-            // Create and populate the Excel file with the correct schema
-            excelReader.createAndPopulateExcelFile(filePath);
-
-            // Example: Read the Excel file and print the data
-            List<ExcelDataModel> data = readExcelFile(filePath);
-            for (ExcelDataModel model : data) {
-                System.out.println("Product: " + model.new SalesData().product);
-                System.out.println("Price: " + model.new SalesData().price);
-                System.out.println("Quantity: " + model.new SalesData().quantity);
-                System.out.println("Total: " + model.new SalesData().total);
+    // Helper method to safely extract numeric values from a cell (handles both integer and double values)
+    private static double getNumericCellValue(Cell cell) {
+        if (cell != null) {
+            if (cell.getCellType() == CellType.NUMERIC) {
+                return cell.getNumericCellValue();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return 0; // Default to 0 if cell is empty or doesn't match expected types
+    }
+
+    // Helper method to extract string values from cells
+    private static String getStringCellValue(Cell cell) {
+        if (cell != null) {
+            if (cell.getCellType() == CellType.STRING) {
+                return cell.getStringCellValue();
+            }
+        }
+        return ""; // Return empty string if the cell is empty or doesn't contain a string
     }
 }
