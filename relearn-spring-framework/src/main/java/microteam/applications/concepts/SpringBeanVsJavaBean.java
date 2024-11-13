@@ -1,4 +1,4 @@
-package microteam.configuration;
+package microteam.applications.concepts;
 
 import java.io.Serializable;
 

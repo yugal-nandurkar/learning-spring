@@ -1,4 +1,4 @@
-package microteam.applications;
+package microteam.applications.gaming;
 
 import microteam.game.GameRunnerSB;
 import microteam.game.GamingConsole;

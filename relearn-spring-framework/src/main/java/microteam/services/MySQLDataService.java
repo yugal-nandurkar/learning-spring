@@ -1,8 +1,10 @@
 package microteam.services;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component//Step25.2
+//@Component//Step25.2
+@Repository //Step 37.3
 public class MySQLDataService implements DataService {
 
     @Override

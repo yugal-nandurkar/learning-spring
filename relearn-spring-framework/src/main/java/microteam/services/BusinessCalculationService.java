@@ -2,10 +2,12 @@ package microteam.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Component //Step25.1
+//@Component //Step25.1
+@Service //Step 37.1
 public class BusinessCalculationService {
     //Step 23.4
     private DataService dataService;

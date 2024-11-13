@@ -1,5 +1,6 @@
-package microteam.applications;
+package microteam.applications.concepts;
 
+import microteam.services.BusinessCalculationService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,13 +8,16 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 
 @Configuration
-@ComponentScan("microteam.game") //Step 12 Guide Spring to Search for PacMan Component
-public class ContextLauncher {
+@ComponentScan("microteam.services")
+public class EnterpriseLauncher {
     public static void main(String[] args) {
         var context = new AnnotationConfigApplicationContext
-                (ContextLauncher.class);
+                (EnterpriseLauncher.class);
         Arrays.stream(context.getBeanDefinitionNames())
                 .forEach(System.out::println);
+
+        System.out.println(
+                context.getBean(BusinessCalculationService.class).findMax());
     }
 }
 

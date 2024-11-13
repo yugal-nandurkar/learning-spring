@@ -1,6 +1,6 @@
 package microteam.configuration;
 
-import microteam.applications.RelearnSpringFrameworkApplication;
+import microteam.applications.templates.RelearnSpringFrameworkApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

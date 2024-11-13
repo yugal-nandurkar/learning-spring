@@ -1,4 +1,4 @@
-package microteam.applications;
+package microteam.applications.gaming;
 
 import microteam.game.GameRunnerTC;
 import microteam.game.MarioGame;

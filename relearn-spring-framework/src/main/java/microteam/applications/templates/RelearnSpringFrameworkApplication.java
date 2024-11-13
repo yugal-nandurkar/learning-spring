@@ -1,4 +1,4 @@
-package microteam.applications;
+package microteam.applications.templates;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

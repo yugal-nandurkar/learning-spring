@@ -1,4 +1,4 @@
-package microteam.applications;
+package microteam.applications.concepts;
 
 import microteam.configuration.Address;
 import microteam.configuration.SpringConfigurator;

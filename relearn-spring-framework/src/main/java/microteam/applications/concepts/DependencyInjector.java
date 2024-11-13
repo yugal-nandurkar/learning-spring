@@ -1,4 +1,4 @@
-package microteam.applications;
+package microteam.applications.concepts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

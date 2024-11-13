@@ -2,8 +2,10 @@ package microteam.services;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component//Step25.3
+//@Component//Step25.3
+@Repository //Step 37.2
 @Primary
 public class MongoDBDataService implements DataService {
 
