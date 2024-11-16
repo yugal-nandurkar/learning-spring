@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maven Clean Install </title>
+</head>
+<body>
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app> mvn clean install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------< com.microteam.springboot:spring-boot-web-app >------------
+[INFO] Building todo-web-app 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ spring-boot-web-app ---
+[INFO]
+[INFO] --- resources:3.2.0:resources (default-resources) @ spring-boot-web-app ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 8 resources
+[INFO]
+[INFO] --- compiler:3.10.1:compile (default-compile) @ spring-boot-web-app ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 9 source files to C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app\target\classes
+[INFO]
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ spring-boot-web-app ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app\src\test\resources
+[INFO]
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ spring-boot-web-app ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app\target\test-classes
+[INFO]
+[INFO] --- surefire:2.22.2:test (default-test) @ spring-boot-web-app ---
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running microteam.TodoWebAppTests
+14:59:26.671 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+14:59:26.683 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+14:59:26.715 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [microteam.TodoWebAppTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+14:59:26.726 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [microteam.TodoWebAppTests], using SpringBootContextLoader
+14:59:26.729 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [microteam.TodoWebAppTests]: class path resource [microteam/TodoWebAppTests-context.xml] does not exist
+14:59:26.729 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [microteam.TodoWebAppTests]: class path resource [microteam/TodoWebAppTestsContext.groovy] does not exist
+14:59:26.729 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [microteam.TodoWebAppTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+14:59:26.730 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [microteam.TodoWebAppTests]: TodoWebAppTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:59:26.772 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [microteam.TodoWebAppTests]
+14:59:26.824 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app\target\classes\microteam\TodoWebApp.class]
+14:59:26.825 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration microteam.TodoWebApp for test class microteam.TodoWebAppTests
+14:59:26.890 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [microteam.TodoWebAppTests]: using defaults.
+14:59:26.890 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.f
+actories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework
+.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springf
+ramework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener,
+org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.sp
+ringframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframewor
+k.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.tran
+saction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+14:59:26.905 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestEx
+ecutionListener@c94fd30, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@36328d33, org.springframework.test.context.event.ApplicationEventsT
+estExecutionListener@2c4d1ac, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7f0d96f2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInje
+ctionTestExecutionListener@545b995e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@76a2ddf3, org.springframework.test.context.transaction.Transaction
+alTestExecutionListener@524f3b3a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@41e68d87, org.springframework.test.context.event.EventPublishingTestExecutio
+nListener@49ff7d8c, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@29526c05, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionL
+istener@2ef14fe, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@77102b91, org.springframework.boot.test.autoconfigure.web.se
+rvlet.MockMvcPrintOnlyOnFailureTestExecutionListener@45312be2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7fb95505, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@58be6e8]
+14:59:26.908 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@1b84f475 testClass =
+TodoWebAppTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@7749bf93 testClass = TodoWebAppTes
+ts, locations = '{}', classes = '{class microteam.TodoWebApp}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties =
+'{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomiz
+er@1e1a0406, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@290222c1, org.springframework.boot.test.mock.mockit
+o.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@59505b48, org.springframework.boot.test.autoconfigure.actuate.metrics.Metri
+csExportContextCustomizerFactory$DisableMetricExportContextCustomizer@52b1beb6, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.sprin
+gframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@5677323c, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframewor
+k.boot.test.context.SpringBootTestWebEnvironment@75881071], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', p
+arent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+.   ____          _            __ _ _
+/\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+\\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+'  |____| .__|_| |_|_| |_\__, | / / / /
+=========|_|==============|___/=/_/_/_/
+:: Spring Boot ::             (v3.0.0-M3)
+
+2024-11-16T14:59:27.183+05:30  INFO 16328 --- [           main] microteam.TodoWebAppTests                : Starting TodoWebAppTests using Java 23.0.1 on DESKTOP-EC83EQ2 with PID 16328 (started by desk in C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app)
+2024-11-16T14:59:27.185+05:30  INFO 16328 --- [           main] microteam.TodoWebAppTests                : No active profile set, falling back to 1 default profile: "default"
+2024-11-16T14:59:27.824+05:30  INFO 16328 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16T14:59:27.862+05:30  INFO 16328 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 1 JPA repository interfaces.
+2024-11-16T14:59:28.249+05:30  INFO 16328 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-16T14:59:28.405+05:30  INFO 16328 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2024-11-16T14:59:28.406+05:30  INFO 16328 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-16T14:59:28.462+05:30  INFO 16328 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16T14:59:28.516+05:30  INFO 16328 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2024-11-16T14:59:28.669+05:30  INFO 16328 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-11-16T14:59:28.780+05:30  INFO 16328 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2024-11-16T14:59:29.187+05:30  INFO 16328 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-11-16T14:59:29.193+05:30  INFO 16328 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16T14:59:29.760+05:30  INFO 16328 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.Di
+sableEncodeUrlFilter@10ec4721, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7bdf94f2, org.springframework.security.web.context.SecurityCo
+ntextHolderFilter@1f6e6f50, org.springframework.security.web.header.HeaderWriterFilter@4bab804f, org.springframework.security.web.authentication.logout.LogoutFilter@6c8d638a, org.s
+pringframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4f0c1409, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@144dc2
+f7, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6b92a0d1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@796cf2b5, o
+rg.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@690677de, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b9ed99d,
+org.springframework.security.web.session.SessionManagementFilter@7a0f43dc, org.springframework.security.web.access.ExceptionTranslationFilter@1c5cd2ea, org.springframework.security.web.access.intercept.AuthorizationFilter@11174bf]
+2024-11-16T14:59:29.908+05:30  WARN 16328 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16T14:59:30.192+05:30  INFO 16328 --- [           main] microteam.TodoWebAppTests                : Started TodoWebAppTests in 3.254 seconds (process running for 4.026)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.645 s - in microteam.TodoWebAppTests
+2024-11-16T14:59:30.303+05:30  INFO 16328 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16T14:59:30.304+05:30  INFO 16328 --- [ionShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2024-11-16T14:59:30.306+05:30  WARN 16328 --- [ionShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2024-11-16T14:59:30.306+05:30 ERROR 16328 --- [ionShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-212]
+2024-11-16T14:59:30.307+05:30  WARN 16328 --- [ionShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2024-11-16T14:59:30.307+05:30 ERROR 16328 --- [ionShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-212]
+2024-11-16T14:59:30.308+05:30  WARN 16328 --- [ionShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2024-11-16T14:59:30.308+05:30  INFO 16328 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-16T14:59:30.311+05:30  INFO 16328 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.2.2:jar (default-jar) @ spring-boot-web-app ---
+[INFO] Building jar: C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app\target\spring-boot-web-app-0.0.1-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot:3.0.0-M3:repackage (repackage) @ spring-boot-web-app ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO]
+[INFO] --- install:2.5.2:install (default-install) @ spring-boot-web-app ---
+[INFO] Installing C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app\target\spring-boot-web-app-0.0.1-SNAPSHOT.jar to C:\Users\desk\.m2\repository\com\microteam\springboot\spring-boot-web-app\0.0.1-SNAPSHOT\spring-boot-web-app-0.0.1-SNAPSHOT.jar
+[INFO] Installing C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app\pom.xml to C:\Users\desk\.m2\repository\com\microteam\springboot\spring-boot-web-app\0.0.1-SNAPSHOT\spring-boot-web-app-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.273 s
+[INFO] Finished at: 2024-11-16T14:59:31+05:30
+[INFO] ------------------------------------------------------------------------
+PS C:\Users\desk\Documents\Projects\learning-spring\spring-boot-web-app>
+</body>
+</html>

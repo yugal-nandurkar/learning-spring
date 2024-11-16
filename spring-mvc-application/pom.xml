@@ -47,7 +47,7 @@
           <artifactId>tomcat7-maven-plugin</artifactId>
           <version>2.2</version>
           <configuration>
-            <port>8081</port> <!-- Specify the port here -->
+             <!-- <port>8081</port> Specify the port here -->
             <path>/</path>
             <contextReloadable>true</contextReloadable>
           </configuration>

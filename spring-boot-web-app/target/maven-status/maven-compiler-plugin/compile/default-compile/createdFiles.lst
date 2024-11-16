@@ -1,0 +1,9 @@
+microteam\repository\TodoRepository.class
+microteam\TodoWebApp.class
+microteam\controller\TodoControllerJpa.class
+microteam\generic\Todo.class
+microteam\services\TodoService.class
+microteam\configuration\SpringSecurityConfiguration.class
+microteam\controller\TodoController.class
+microteam\controller\WelcomeController.class
+microteam\controller\SayHelloController.class
