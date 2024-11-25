@@ -1,0 +1,100 @@
+1. Set up a Spring Boot project with dependencies for Spring Web, Spring Cloud, and Consul.
+2. Define the `spring-boot-starter-parent` in the `pom.xml` file with the appropriate version.
+3. Include Spring Cloud dependency management for Hoxton.RC1 version.
+4. Add dependencies for Spring Cloud Consul, Spring Boot Web, and Actuator.
+5. Configure `server.port=0` for dynamic port allocation during runtime.
+6. Set `spring.cloud.consul.discovery.instance-id` to ensure unique service registration.
+7. Create `application.yml` for configuring `account-service` with Consul.
+8. Set Consul `host` and `port` in `application.yml` for local Consul setup.
+9. Implement the main class with `@SpringBootApplication` for `account-service`.
+10. Launch the Spring Boot application to connect to Consul for service registration.
+11. Use Docker to set up a Consul cluster with multiple agent nodes for service discovery.
+12. Run the first Consul container as the cluster leader using `CONSUL_BIND_INTERFACE=eth0`.
+13. Start additional Consul containers as agents, joining the cluster via the leader's address.
+14. Use Consul UI or CLI to check the cluster membership and node details.
+15. Configure Spring Boot applications to use Consul for service discovery and configuration.
+16. Add `spring-cloud-starter-openfeign` and `spring-cloud-starter-sleuth` dependencies for inter-service communication.
+17. Enable `@EnableFeignClients` to allow Spring Boot applications to use Feign for service-to-service communication.
+18. Define an interface annotated with `@FeignClient` to declare API calls to other microservices.
+19. Use `@GetMapping` in Feign interfaces to define REST endpoints between services.
+20. Enable OpenFeign integration in `CustomerApplication` to fetch data from `account-service`.
+21. Configure Consul service discovery for the `customer-service` to point to the Consul agent's IP.
+22. Set up **zone affinity** to enable services to communicate within the same zone for optimized performance.
+23. Configure `spring.cloud.consul.discovery.instanceZone` for zone affinity in `account-service`.
+24. Define multiple profiles (`zone1` and `zone2`) for services to represent different deployment zones.
+25. Use `spring.cloud.consul.discovery.instanceZone` to tag services with the correct zone in Consul.
+26. Define service routes in `spring.cloud.gateway.discovery.locator.enabled=true` for API gateway integration.
+27. Set `spring.cloud.gateway.discovery.locator.enabled=true` in `gateway-service` to enable automatic service discovery.
+28. Configure Spring Cloud Gateway to forward requests to services using dynamic routes.
+29. Create routes in Spring Cloud Gateway for `account-service`, `customer-service`, etc.
+30. Set the `RewritePath` filter in Gateway to adjust incoming paths to match service endpoints.
+31. Set `spring.profiles.active=zone1` or `zone2` when starting services for specific zone configuration.
+32. Launch `gateway-service` with a static port to expose the API gateway.
+33. Disable Consul registration in Gateway by setting `register=false` since it is an external service.
+34. Set `server.port` to 8080 or 9080 in the Gateway configuration depending on the zone.
+35. Test zone affinity by running instances of services in `zone1` and `zone2`, checking that requests are forwarded to local zone instances.
+36. Enable Spring Cloud Config by adding `spring-cloud-starter-consul-config` to the dependencies.
+37. Define application configuration in Consul for each microservice under a zone (e.g., `/config/account-service,zone1/data`).
+38. Store configuration data in YAML format within Consul’s KV store for each service.
+39. Add `bootstrap.yml` to each microservice to configure Consul connection details (host, port, and config format).
+40. Use Consul KV to store service-specific configuration files for `account-service`, `customer-service`, etc.
+41. Define separate configuration folders for each service in zone1 and zone2 to allow per-zone configurations.
+42. Set the format of configuration data to YAML in Consul by specifying `config.format: YAML` in `bootstrap.yml`.
+43. Fetch configuration from Consul at startup via `bootstrap.yml` for each service.
+44. Verify Consul Config is working by checking if services pull configuration on startup.
+45. Configure dynamic service registration for each Spring Boot microservice using Consul.
+46. Use `server.port=0` for dynamically allocated ports during development and testing.
+47. Set the `spring.application.name` property in `application.yml` for each service for identification in Consul.
+48. Test each microservice to ensure it is registered in Consul with the correct zone and port.
+49. Verify service communication by ensuring that OpenFeign clients in `customer-service` can fetch data from `account-service`.
+50. Test API Gateway routes to confirm that requests are forwarded correctly to the backend services.
+51. Use Consul UI to view the status of services, nodes, and health checks.
+52. Implement health checks for each service in the application to monitor their availability in Consul.
+53. Deploy each microservice and API gateway in Docker containers for easy scalability and isolation.
+54. Configure Docker containers to join the Consul cluster using the `-join` flag for multi-node setup.
+55. Expose the Consul client API on specific ports by binding Docker containers to `0.0.0.0`.
+56. Use `docker logs consul` to identify the internal address of the Consul container.
+57. Set the `spring.cloud.consul.discovery.instance-id` dynamically for each container instance.
+58. Use Spring profiles (`zone1` and `zone2`) for different environments (production, development, testing).
+59. Set `spring.cloud.consul.discovery.defaultZoneMetadataName` to customize the zone metadata tag name.
+60. Enable automatic configuration retrieval for each microservice based on active profiles.
+61. Use Docker Compose to spin up multiple containers for services and Consul, enabling local testing.
+62. Add `spring.cloud.consul.discovery.tags` to tag services with relevant metadata like `zone`.
+63. Run multiple instances of the API Gateway for fault tolerance and load balancing.
+64. Add Spring Cloud Sleuth to propagate trace information across microservices.
+65. Ensure each service sends and receives trace information by adding the `@FeignClient` and `@RequestMapping` annotations.
+66. Use `Path` predicates in Gateway routes to forward requests to appropriate service endpoints.
+67. Implement exception handling in API Gateway for forwarding errors from backend services.
+68. Apply rate-limiting policies at the API Gateway to control traffic flow.
+69. Define load balancing rules in Gateway to ensure requests are evenly distributed across service instances.
+70. Implement fallback methods in case of failures using Spring Cloud Circuit Breaker.
+71. Configure `spring.cloud.gateway.discovery.locator.enabled=true` for automatic discovery of services in Gateway.
+72. Use `@PathVariable` to map request parameters in Feign client methods for inter-service communication.
+73. Configure Feign client to connect to services using their `service-name` registered in Consul.
+74. Test inter-service communication by making requests to `customer-service` via the API Gateway.
+75. Monitor the health of services and their availability in the Consul UI.
+76. Configure Consul agent in development mode with `-dev` for local testing.
+77. Store the application-specific configurations in `/config/{application-name},zone{zone-name}/data` in Consul.
+78. Leverage Spring Cloud Consul to automatically register service instances upon startup.
+79. Configure dynamic scaling by adjusting the number of microservice instances based on zone and health status.
+80. Update service configurations in Consul without needing to restart services.
+81. Use `@EnableFeignClients` annotation in the main Spring Boot application class to enable Feign integration.
+82. Deploy applications in Docker Swarm or Kubernetes for distributed environments.
+83. Enable SSL encryption between services by configuring Spring Boot to use secure ports and certificates.
+84. Monitor application logs via the Spring Actuator and Consul’s integrated health checks.
+85. Implement security features like OAuth2 or JWT for API Gateway and microservices.
+86. Ensure services are resilient by implementing retry logic using Spring Cloud Circuit Breaker.
+87. Test deployment in cloud environments like AWS, Azure, or GCP.
+88. Configure centralized logging using tools like ELK (Elasticsearch, Logstash, Kibana).
+89. Optimize service startup times by using Spring Cloud's lazy loading capabilities.
+90. Use distributed tracing to track the journey of requests across multiple microservices.
+91. Implement multi-tenancy by segregating service configurations for different clients or users.
+92. Use Consul's ACL (Access Control List) to secure and control access to service discovery and configuration data.
+93. Enable monitoring and alerting on service performance using Spring Boot Actuator and Consul.
+94. Use Consul’s watch feature to monitor configuration changes and notify services.
+95. Implement auto-scaling in Kubernetes by defining horizontal pod autoscalers for each service.
+96. Set up CI/CD pipelines using Jenkins, GitLab, or GitHub Actions for continuous deployment.
+97. Ensure backward compatibility by versioning APIs and service configurations in Consul.
+98. Configure service fallback using Resilience4j in Feign clients for graceful degradation.
+99. Keep your Consul KV store and microservices configurations synchronized by regularly auditing and updating service definitions.
+100. Document your microservices architecture and configuration strategy for future reference and team collaboration.

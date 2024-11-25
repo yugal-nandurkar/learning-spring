@@ -1,0 +1,37 @@
+Here are one-liner steps for the `CustomerController` class:
+
+1. **Initialize ObjectMapper**: Create an instance of `ObjectMapper` to handle JSON serialization and deserialization.
+2. **Inject dependencies**: Autowire `AccountClient` and `CustomerRepository` to access account data and customer repository.
+3. **Add new customer**: Define `POST` method to add a new customer to the repository.
+4. **Update customer**: Define `PUT` method to update an existing customer's details in the repository.
+5. **Find customer by ID**: Define `GET` method to find a customer by their ID from the repository.
+6. **Find customer with accounts**: Define `GET` method to fetch customer by ID along with associated accounts using `AccountClient`.
+7. **Log account data**: Log the found accounts for the customer using `LOGGER.info`.
+8. **Find customers by multiple IDs**: Define `POST` method to find multiple customers by their IDs using the repository.
+9. **Delete customer by ID**: Define `DELETE` method to remove a customer by their ID from the repository.
+
+Here are the one-liner steps for the `CustomerApplication` class:
+
+1. **Enable Feign Clients**: Use `@EnableFeignClients` to enable Feign clients for communication with other services (like Account service).
+2. **Start Spring Boot Application**: Use `SpringApplication.run` to start the `CustomerApplication` Spring Boot application.
+3. **Define Request Logging Filter**: Create and configure `CommonsRequestLoggingFilter` to log incoming requests including headers and payload up to 1000 characters.
+4. **Create Customer Repository Bean**: Define a `CustomerRepository` bean and initialize it with sample customer data (John Scott, Adam Smith, Jacob Ryan).
+
+Here are the one-liner steps for the provided Logback XML configuration:
+
+1. **Console Logging Appender**: Defines a `CONSOLE` appender that logs messages with `INFO` level and above to the console with a specific log pattern.
+2. **File Rolling Appender**: Configures a `FILE` appender to log messages to a rolling file (`customer.log`), with a time-based rolling policy that keeps up to 10 days of logs and caps total size at 1GB.
+3. **Logstash Appender**: Defines a `STASH` appender to send log events to a Logstash server (`192.168.99.100:5000`), encoding them in JSON format.
+4. **Root Logger Configuration**: Sets the root logger to log at `INFO` level, with the log events being sent to the `CONSOLE`, `FILE`, and `STASH` appenders.
+
+Here are the one-liner steps for the provided test code:
+
+1. **Hoverfly Setup**: The test is extended with `HoverflyExtension` to simulate external HTTP requests using Hoverfly for mocking APIs.
+2. **Consul Container Setup**: A `ConsulContainer` is initialized and used to configure Consul's port for configuration management.
+3. **Configuration Initialization**: In the `init()` method, the Consul properties for the application are set to connect to the running container.
+4. **Test for `findAll` Endpoint**: The `findAll()` test sends a POST request with customer IDs to verify if the correct number of customers is returned.
+5. **Test for `findById` Endpoint**: The `findById()` test sends a GET request with a customer ID to check if the customer is fetched correctly.
+6. **Test for `add` Endpoint**: The `add()` test sends a POST request to add a new customer and verifies the customer ID is returned.
+7. **Test for `findByIdWithAccounts` Endpoint**: The `findByIdWithAccounts()` test uses Hoverfly to mock the `account-service` API and check if accounts are correctly linked to the customer.
+8. **Mock Account Service Response**: Hoverfly is used to simulate a response from the `account-service` for the customer with accounts, returning a mock JSON response.
+

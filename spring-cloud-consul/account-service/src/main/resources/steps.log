@@ -1,0 +1,54 @@
+one-liner steps for each of the code sections provided for the AccountController class:
+
+Define AccountController: A REST controller to handle requests related to account operations.
+Initialize Logger: Create a logger instance to log account-related events.
+Define ObjectMapper: Use ObjectMapper for JSON processing in logging and responses.
+Autowire AccountRepository: Inject the AccountRepository to interact with the database.
+Define add() method: Handle POST requests to add a new account.
+Define update() method: Handle PUT requests to update account details.
+Define withdraw() method: Handle PUT requests to withdraw funds from an account, ensuring sufficient balance.
+Log account details: Log account information and balance during withdrawal process.
+Handle withdrawal exception: Throw a custom BalanceNotEnoughException if the withdrawal amount exceeds the account balance.
+Define findById() method: Handle GET requests to find an account by its ID.
+Define findByCustomerId() method: Handle GET requests to find accounts by customer ID.
+Define find() method: Handle POST requests to find multiple accounts by a list of IDs.
+Define delete() method: Handle DELETE requests to delete an account by its ID.
+
+Here are one-liner steps for each of the code sections provided for the `AccountRepository` class:
+
+1. **Define `AccountRepository` class**: A repository class to manage `Account` objects in memory.
+2. **Initialize `accounts` list**: Create an in-memory list to store account records.
+3. **Define `add()` method**: Add a new account to the list, assigning a unique ID.
+4. **Define `update()` method**: Update an existing account in the list by its ID.
+5. **Define `findById()` method**: Find and return an account by its ID, or throw an exception if not found.
+6. **Define `delete()` method**: Delete an account from the list by its ID.
+7. **Define `find()` method**: Find and return a list of accounts by a list of account IDs.
+8. **Define `findByCustomer()` method**: Find and return accounts by customer ID.
+
+Each step corresponds to the function provided in the repository for managing account entities.
+
+Here are one-liner steps for the `AccountApplication` class:
+
+1. **Define `AccountApplication` class**: The main Spring Boot application class for the account service.
+2. **Define `main()` method**: Entry point to run the Spring Boot application.
+3. **Define `requestLoggingFilter()` method**: Create and configure a logging filter to log incoming HTTP request details, including headers and payload.
+4. **Define `repository()` method**: Create and initialize an in-memory `AccountRepository` with predefined accounts for testing.
+
+Here are one-liner steps for the Logback configuration provided:
+
+1. **Define `CONSOLE` appender**: Configure a console appender to log messages with `INFO` level or higher to the console, with a timestamp and log level.
+2. **Define `FILE` appender**: Configure a rolling file appender to store logs in `logs/account.log`, with daily rotation, a maximum history of 10 days, and a total size cap of 1GB.
+3. **Define `STASH` appender**: Configure a Logstash TCP socket appender to send logs to `192.168.99.100:5000` in JSON format.
+4. **Set `root` logger level**: Set the root logger to `INFO` level and attach the `CONSOLE`, `FILE`, and `STASH` appenders for logging.
+
+Here are one-liner steps for the `AccountControllerTests` class:
+
+1. **Start `ConsulContainer`**: Initialize a Consul container with a key-value pair (`config/account-service test=abc`) for configuration management.
+2. **Set Consul property**: Set the `spring.cloud.consul.port` system property to the Consul container's mapped port.
+3. **Set Spring config import**: Set the `spring.config.import` property to use Consul for configuration.
+4. **Test `findAll` method**: Send a `POST` request with account IDs `[1, 2, 3]` and verify the response contains exactly 3 accounts.
+5. **Test `findByCustomerId` method**: Send a `GET` request with customer ID `1` and verify the response contains at least one account.
+6. **Test `add` method**: Send a `POST` request to add a new account with specified details and verify the account is created with an ID.
+7. **Test `withdrawOk` method**: Send a `PUT` request to withdraw `10000` from account ID `1` and verify the balance is correctly updated to `40000`.
+8. **Test `withdrawFailed` method**: Send a `PUT` request to withdraw `100000` from account ID `2` and verify the response returns a `500` status due to insufficient funds.
+

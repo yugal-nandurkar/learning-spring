@@ -1,0 +1,52 @@
+This CircleCI configuration file defines a CI/CD pipeline for a Java project using Maven, OpenJDK 21, and **SonarCloud** for static code analysis. Here's a breakdown of the configuration:
+
+### Version:
+- The configuration uses version `2.1` of CircleCI's configuration syntax.
+
+### Jobs:
+#### 1. **analyze** (SonarCloud Analysis Job):
+   - **Docker Executor**: Uses the `cimg/openjdk:21.0.5` Docker image, which is pre-configured with OpenJDK 21.
+   - **Steps**:
+     - **checkout**: Pulls the latest code from the repository.
+     - **run**: Runs the command `mvn verify sonar:sonar -DskipTests` to verify the Maven project and run **SonarCloud** analysis while skipping tests.
+
+#### 2. **test** (Test Job):
+   - **Machine Executor**: Runs the job on a **machine executor** using the `ubuntu-2204:2023.10.1` image.
+   - **Steps**:
+     - **checkout**: Pulls the latest code from the repository.
+     - **run**: Installs **OpenJDK 21**:
+       - Verifies the current Java version.
+       - Installs OpenJDK 21 using `apt-get`.
+       - Configures Java 21 to be the default with `update-alternatives`.
+       - Verifies the Java version again.
+     - **run**: Runs `mvn test` to execute the tests using Maven.
+
+### Orbs:
+- **maven**: Uses the `circleci/maven@2.0.0` orb for simplifying Maven-related tasks (although it seems unused in the configuration itself, it might be part of the initial setup).
+
+### Executors:
+- **machine_executor_amd64**:
+  - Specifies the machine image `ubuntu-2204:2023.10.1` which is used for running the test job.
+  - **Environment Variables**:
+    - `architecture`: Set to `"amd64"`.
+    - `platform`: Set to `"linux/amd64"`, indicating the platform architecture.
+
+### Workflows:
+- **maven_test**: Defines the workflow that runs the jobs sequentially.
+   - **test**: The first job to run, which installs OpenJDK 21 and runs the Maven tests.
+   - **analyze**: The second job to run, which performs SonarCloud analysis using the `SonarCloud` context for security or environment-specific configuration.
+
+### Summary of Flow:
+1. The **test job** installs OpenJDK 21 and runs Maven tests.
+2. The **analyze job** runs SonarCloud analysis on the code, but skips the tests.
+
+The **SonarCloud analysis** is typically integrated into the pipeline to analyze the quality of the codebase, track vulnerabilities, and improve code quality. By skipping tests in the `analyze` job (`-DskipTests`), the focus is on code analysis rather than executing unit tests in that particular step.
+
+### Potential Improvement:
+- **SonarCloud Context**: It’s important to ensure that the `SonarCloud` context is correctly configured in CircleCI's project settings. This may include setting up authentication tokens or configuring environment variables for accessing SonarCloud.
+
+### Example Commands:
+```bash
+mvn verify sonar:sonar -DskipTests  # For SonarCloud analysis
+mvn test                           # For running unit tests
+```
