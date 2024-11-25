@@ -25,6 +25,7 @@
       <module name="micro-arch-health" options="-parameters" />
       <module name="micro-arch-log" options="-parameters" />
       <module name="micro-arch-pattern" options="-parameters" />
+      <module name="micro-arch-services" options="-parameters" />
       <module name="micro-arch-tracer" options="-parameters" />
     </option>
   </component>
