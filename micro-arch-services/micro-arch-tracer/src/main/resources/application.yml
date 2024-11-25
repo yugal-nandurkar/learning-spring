@@ -1,0 +1,19 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: micro-arch-tracer
+
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+
+management:
+  tracing:
+    enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: tracing

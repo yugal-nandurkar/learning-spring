@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: micro-arch-discovery
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+        prefer-ip-address: true
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      config:
+        enabled: true
+        format: KEY_VALUE
+        fail-fast: true
+
+server:
+  port: 8081
+
+spring.config.import: "optional:consul:"

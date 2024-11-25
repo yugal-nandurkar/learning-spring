@@ -1,0 +1,44 @@
+# Spring Boot Application Configuration
+spring.application.name=micro-arch-discovery
+# Port where the application will run
+server.port=8081
+
+# Spring Cloud Consul Configuration
+spring.cloud.consul.host=localhost           # Host for Consul server (can be localhost or a remote server)
+# Port where Consul is running
+spring.cloud.consul.port=8500
+# Enable service registration with Consul
+spring.cloud.consul.discovery.register=true
+# Prefer IP address over hostname in service registration
+spring.cloud.consul.discovery.prefer-ip-address=true
+
+# Spring Boot Actuator Health Check Path (If using Actuator, health check will be available at /actuator/health)
+spring.cloud.consul.discovery.health-check-path=/actuator/health
+# Dynamic Instance ID with fallback
+spring.cloud.consul.discovery.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+# Enable Consul service health check (additional configuration for health checks)
+spring.cloud.consul.discovery.health-check-interval=10s  # Time interval between health checks
+
+# Logging Configuration
+logging.level.root=INFO  # Set root logging level to INFO
+logging.level.org.springframework.cloud.consul=DEBUG  # Enable debug logging for Consul-related operations
+
+# Service Metadata (Used in ServiceRegistration, ServiceMetadataBuilder, etc.)
+service.version=2.0.0
+service.environment=staging
+service.team=devops-team
+service.region=us-west-2
+
+# Additional Optional Spring Cloud Configurations (If required for other Spring Cloud components)
+# spring.cloud.config.uri=http://localhost:8888  # If you are using Spring Cloud Config
+# spring.cloud.discovery.client.simple.enabled=false  # Disable simple discovery client if using Consul instead of Eureka
+
+# Consul Client Connection Timeout (optional, if required for custom connection configurations)
+#spring.cloud.consul.discovery.connection-timeout=5000  # Timeout for Consul client connections
+
+# Enable Consul Configuration Import
+spring.config.import=consul:
+# If you are not using Consul for configuration, disable the import check:
+# spring.cloud.consul.config.enabled=false
+# spring.cloud.consul.config.import-check.enabled=false

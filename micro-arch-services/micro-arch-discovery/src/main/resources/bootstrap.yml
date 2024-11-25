@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: micro-arch-discovery  # Application name used for Consul registration
+
+  cloud:
+    consul:
+      host: localhost           # Consul server address
+      port: 8500                # Consul server port
+      discovery:
+        register: true          # Register the service with Consul
+        prefer-ip-address: true # Use IP address instead of hostname for service registration
+        health-check-path: /actuator/health # Health check endpoint for Consul
+        health-check-interval: 10s # Health check interval
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}} # Unique instance ID
+      config:
+        enabled: true            # Enable Consul configuration
+        format: KEY_VALUE        # Key-Value format for Consul configuration
+        fail-fast: true          # Fail fast if Consul configuration is not available
+
+server:
+  port: 8081                    # Port where the service will run
+
+spring.config.import: "optional:consul:" # Import Consul as a configuration source

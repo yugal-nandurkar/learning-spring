@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: micro-arch-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: service-route
+          uri: lb://your-microservice-name  # Load balancer URI, adjust as needed
+          predicates:
+            - Path=/api/service/**  # Match all requests starting with /api/service/
+          filters:
+            - AddRequestHeader=X-Request-Foo, Bar  # Example filter
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/  # URL to Eureka server

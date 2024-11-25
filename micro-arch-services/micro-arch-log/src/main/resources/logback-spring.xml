@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Include the Spring Profile to support different logging configurations per environment -->
+    <springProfile name="dev">
+        <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} - %-5level [%logger{36}] - %msg%n" />
+        <property name="LOG_FILE" value="logs/application-dev.log" />
+    </springProfile>
+
+    <springProfile name="prod">
+        <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} - %-5level [%logger{36}] - %msg%n" />
+        <property name="LOG_FILE" value="logs/application-prod.log" />
+    </springProfile>
+
+    <!-- Console Appender for development -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender with Rolling Policy -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/application-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- Keep logs for the last 30 days -->
+            <totalSizeCap>10GB</totalSizeCap> <!-- Cap the total size of logs -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger Configuration -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- Logger for health-specific logs -->
+    <logger name="com.microservices.logs" level="DEBUG">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- Logger for Spring's internal logs (e.g., Spring Framework logs) -->
+    <logger name="org.springframework" level="WARN" />
+    <logger name="org.hibernate" level="ERROR" />
+
+    <!-- Enable logging for health checks -->
+    <logger name="com.microservices.health" level="DEBUG">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- Set up logging for specific packages or classes if needed -->
+    <logger name="com.microservices" level="INFO">
+        <appender-ref ref="FILE" />
+    </logger>
+
+</configuration>

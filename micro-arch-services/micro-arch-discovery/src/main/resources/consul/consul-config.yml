@@ -1,0 +1,77 @@
+# Consul-specific configuration
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.consul: DEBUG
+
+# Consul Service Registration Configuration
+consul:
+  # Service registration details for Consul
+  service:
+    id: service-discovery                 # Unique ID for this service instance
+    name: service-discovery               # Name of the service in Consul
+    port: 8081                            # The port on which the service is running
+
+    # Service health check configuration for Consul
+    check:
+      http: http://localhost:8081/actuator/health  # URL to check the health of the service
+      interval: 10s                          # How often to perform the health check (e.g., every 10 seconds)
+      timeout: 5s                            # Timeout for the health check request (e.g., 5 seconds)
+      deregisterCriticalServiceAfter: 1m    # Time after which Consul will deregister the service if it's critical
+
+  # Consul connection configuration
+  host: localhost                           # Consul server host (usually localhost for local setups)
+  port: 8500                               # Consul server port (default is 8500)
+  discovery:
+    enabled: true                           # Enable service discovery with Consul
+    prefer-ip-address: true                 # Prefer using IP address rather than the service name for discovery
+    health-check-path: /actuator/health    # Path for health check to be registered in Consul
+    register: true                          # Enable automatic service registration
+
+  # Optional configuration for Consul TTL checks (Time-To-Live health checks)
+  ttl:
+    enabled: true
+    interval: 30s                           # TTL health check interval (how often to check TTL)
+    value: 1h                               # The TTL value for the service registration
+
+# Optional configurations for securing Consul communication (e.g., Consul ACLs, TLS)
+security:
+  acl:
+    enabled: false                         # If enabled, configure ACLs for Consul access (true or false)
+  tls:
+    enabled: false                         # Enable TLS for secure communication (true or false)
+    key-store:                               # Path to the key store file (if using TLS)
+    trust-store:                             # Path to the trust store file (if using TLS)
+    password:                               # Password for the key store/trust store (if using TLS)
+
+# Custom service metadata (optional)
+service-metadata:
+  version: 2.0.0                           # Version of the service
+  environment: staging                     # The environment the service is running in
+  region: us-west-2                        # The geographical region of the service
+  team: devops-team                        # The team responsible for the service
+
+# Custom health check and other optional configurations
+health:
+  check-path: /actuator/health             # Path to the health check (to ensure the service is healthy)
+  check-interval: 30s                      # Interval between health checks (in seconds)
+  check-timeout: 5s                        # Timeout for each health check (in seconds)
+
+# Additional custom configurations (e.g., monitoring, metrics)
+monitoring:
+  enabled: true                            # Enable monitoring of the service (e.g., Prometheus, etc.)
+  prometheus:
+    enabled: true                          # Enable Prometheus monitoring
+    port: 9090                             # Prometheus endpoint port
+
+# Configuration for service discovery in Consul
+discovery:
+  enabled: true                            # Enable the discovery client (for microservices)
+  register: true                            # Register this service in Consul
+  prefer-ip-address: true                  # Prefer using IP address for discovery
+  health-check-path: /actuator/health      # Health check URL to register with Consul
+  metadata:
+    version: 2.0.0                         # Custom metadata for the service
+    environment: production                # The environment in which the service is running
+    team: microservices-team                # The team responsible for the service
+

@@ -1,0 +1,150 @@
+Define Configuration Class: Annotate the Gateway class with @Configuration to enable Spring configuration.
+Create Global Filter Bean: Define a GlobalFilter bean to log the request path and response status.
+Log Request Path: Log the URI of incoming requests in the global filter.
+Continue Filter Chain: Pass the ServerWebExchange to the filter chain.
+Log Response Status: After the chain completes, log the response status code.
+Define Gateway Filter Factory: Create a GatewayFilterFactory bean for custom filtering.
+Implement Custom Filter Logic: Use a GatewayFilter to log a custom message from the configuration.
+Chain Custom Filter: Pass the ServerWebExchange to the chain in the custom filter.
+Specify Config Class: Define CustomConfig as the configuration class for the GatewayFilterFactory.
+Create CustomConfig Class: Use @Getter and @Setter from Lombok to define CustomConfig with a message property.
+Define Controller Class: Annotate the Gateway class with @RestController to define it as a REST API controller.
+Map Status Endpoint: Use @GetMapping("/gateway/status") to handle GET requests for the /gateway/status URL.
+Return Gateway Status: Implement the gatewayStatus method to return the message "Gateway is up and running!".
+Extend Gateway Filter Factory: Create CustomFilter by extending AbstractGatewayFilterFactory with Config as the configuration class.
+Define Constructor: Initialize the superclass with Config.class in the constructor.
+Implement GatewayFilter: Override the apply method to define custom filtering logic.
+Log Request URI: Print the URI of incoming requests in the custom filter.
+Add Custom Header: Append the SERVER header with the value SpringCloudGateway to the response.
+Pass Request Through Chain: Call chain.filter(exchange) to continue processing the request.
+Create Config Class: Define a static Config class to hold optional filter configuration.
+Define Configuration Class: Annotate GlobalErrorHandler with @Configuration to register it in the Spring context.
+Set Exception Handler Order: Use @Order(-2) to prioritize the custom error handler in the error handling chain.
+Implement ErrorWebExceptionHandler: Implement ErrorWebExceptionHandler to define global exception handling for web requests.
+Log the Error: Print the error message from the exception to the standard error stream.
+Set Response Status: Set the HTTP status code to 500 Internal Server Error.
+Set Response Content Type: Specify the response content type as application/json.
+Format Error Message: Create a JSON-formatted error message using the exception details.
+Write Error to Response: Write the formatted error message into the response body using a reactive Mono.
+Define Test Class: Create CustomFilterTests to test the functionality of the CustomFilter.
+Annotate Test Method: Use @Test to mark testCustomFilter as a test method.
+Initialize Filter: Instantiate the CustomFilter to be tested.
+Mock Dependencies: Use Mockito to mock ServerWebExchange, ServerHttpRequest, ServerHttpResponse, and GatewayFilterChain.
+Stub Methods: Stub getRequest, getResponse, and filter methods for the mocked objects with appropriate return values.
+Invoke Filter: Call the filter method on the CustomFilter with the mocked exchange and chain.
+Verify Method Calls: Use verify to ensure the mocked getURI and filter methods were called once.
+Define Test Class: Annotate GatewayApplicationTests with @SpringBootTest for integration testing in a random port environment.
+Inject WebTestClient: Autowire WebTestClient to simulate HTTP requests for testing endpoints.
+Inject RouteDefinitionLocator: Autowire RouteDefinitionLocator to validate the gateway's route configurations.
+Test Context Load: Verify that webTestClient and routeDefinitionLocator are correctly initialized.
+Test Status Endpoint: Use webTestClient to check if /gateway/status returns the expected success response.
+Validate Route Configuration: Retrieve route definitions and verify that specific route IDs like "service-route" are configured.
+Test Non-Existing Route: Ensure a 404 Not Found status is returned for a non-existent endpoint.
+Test Request Forwarding: Simulate a request to a routed path and check the response from the downstream service.
+
+Here are 50 one-liner steps explaining how the `micro-arch-gateway` module works:
+
+### Gateway Filters and Configuration
+1. **Gateway Filter Initialization**: Use Spring Cloud Gateway for centralized routing and filtering of HTTP requests.
+2. **Global Filter Logging**: Log request URIs and response statuses using a global filter.
+3. **Custom Filter Addition**: Implement a `CustomFilter` to modify and log requests with specific headers.
+4. **Filter Configuration Class**: Define a configuration class for custom filters for dynamic settings.
+5. **Custom Header Injection**: Add `SERVER` header as `SpringCloudGateway` in responses for identification.
+6. **Filter Chain Propagation**: Ensure each filter forwards the request to the next stage via `GatewayFilterChain`.
+7. **Error Handling**: Configure `GlobalErrorHandler` to handle exceptions globally within the gateway.
+8. **Error Logging**: Print error messages to the console for debugging.
+9. **Custom Error Response**: Format errors in JSON and set `500` HTTP status for internal server errors.
+10. **Error Response Content-Type**: Use `application/json` to standardize error messages.
+
+### Routes and Endpoint Management
+11. **Route Definition Locator**: Autowire `RouteDefinitionLocator` to retrieve dynamic route configurations.
+12. **Route Forwarding**: Forward requests to downstream microservices based on route definitions.
+13. **Dynamic Route Configuration**: Load routes dynamically from `application.yml` or API configuration.
+14. **Service Route Validation**: Ensure predefined routes like `"service-route"` exist for specific services.
+15. **Fallback for Non-Existing Routes**: Return `404 Not Found` for unregistered paths.
+
+### Gateway Status Monitoring
+16. **REST Endpoint**: Provide a `/gateway/status` endpoint to monitor gateway health.
+17. **Status Response**: Return `Gateway is up and running!` for health checks.
+
+### Integration Testing
+18. **Test Framework**: Use JUnit 5 for testing.
+19. **Spring Boot Context Test**: Ensure the application context loads successfully with required beans.
+20. **Endpoint Test**: Verify `/gateway/status` endpoint functionality using `WebTestClient`.
+21. **Route Existence Test**: Check for specific route IDs like `"service-route"` in the configured routes.
+22. **404 Validation Test**: Simulate requests to non-existent paths and expect `404` responses.
+23. **Downstream Test**: Validate the gateway's ability to forward requests to downstream services.
+
+### Components and Dependency Injection
+24. **Component Annotation**: Annotate `CustomFilter` as `@Component` for Spring dependency injection.
+25. **Configuration Classes**: Use `@Configuration` to register classes like `Gateway` and `GlobalErrorHandler`.
+26. **Spring Context Setup**: Rely on Spring's DI container for bean initialization.
+
+### Filter and Route Behavior
+27. **Filter Factory Extension**: Extend `AbstractGatewayFilterFactory` to customize filters with configurations.
+28. **Route Matching**: Match requests to routes based on defined predicates in configuration.
+29. **Header Manipulation**: Add or manipulate HTTP headers in the filter chain.
+30. **Reactive Programming**: Utilize Reactor's `Mono` and `Flux` for asynchronous processing.
+
+### Logging and Debugging
+31. **Request Logging**: Log incoming request URIs for traceability.
+32. **Response Logging**: Log outgoing response status codes for monitoring.
+33. **Error Debugging**: Provide console logs for all errors caught by `GlobalErrorHandler`.
+
+### Security and Scalability
+34. **Centralized Access Control**: Route requests securely through the gateway.
+35. **Scalable Filtering**: Add multiple filters dynamically to handle cross-cutting concerns.
+
+### Spring Boot Annotations
+36. **RestController for Endpoints**: Define REST controllers for monitoring and auxiliary endpoints.
+37. **Spring Boot Testing**: Use `@SpringBootTest` for integration tests in a simulated environment.
+38. **Order Annotation**: Prioritize error handling with `@Order(-2)` in the global error handler.
+
+### Route and Configuration Validation
+39. **Dynamic Route Loading**: Validate that routes are dynamically loaded from `application.yml`.
+40. **Downstream Service Validation**: Test the gateway's routing to downstream services using expected responses.
+41. **Configuration Dependency**: Ensure `RouteDefinitionLocator` provides correct route definitions.
+
+### Header Manipulation and Content Delivery
+42. **Modify Response Headers**: Inject headers like `SERVER` in all outgoing responses.
+43. **JSON Error Delivery**: Standardize error delivery in JSON for client consumption.
+
+### Asynchronous Processing
+44. **Chain Filters Reactively**: Use reactive `Mono` to process filters and response generation asynchronously.
+45. **Reactive Error Writing**: Write error responses using non-blocking reactive streams.
+
+### Modularity and Maintainability
+46. **Single Responsibility**: Keep routing, filtering, and error handling in separate classes for modularity.
+47. **Custom Configuration**: Use classes like `CustomFilter.Config` to externalize filter behavior.
+
+### Resilience and Fallbacks
+48. **Route Resilience**: Ensure fallback mechanisms like 404 or error responses for unmatched routes.
+49. **Forwarding Resilience**: Test downstream communication to detect service unavailability.
+
+### Gateway Summary
+50. **Unified API Gateway**: Serve as a centralized entry point for routing, monitoring, and securing requests to microservices.
+
+Here are some additional steps that may have been left out:
+
+51. **Route Predicate Configuration**: Use predicates to define conditions under which requests are routed to specific services.
+52. **Load Balancing Support**: Integrate load balancing to distribute traffic across multiple instances of a service.
+53. **Custom Filter Configurations**: Allow customization of filter behavior through `Config` classes, supporting dynamic configuration.
+54. **Cloud-Native Integration**: Leverage Spring Cloud Gateway’s integration with cloud-based routing and service discovery tools.
+55. **Request Timeout Handling**: Implement timeout handling for requests to ensure resilience against slow or unresponsive services.
+56. **Caching Mechanism**: Introduce caching in the gateway for frequently accessed resources to optimize performance.
+57. **Rate Limiting**: Configure rate limiting in the gateway to protect downstream services from overloading.
+58. **Circuit Breaker Integration**: Integrate circuit breakers to gracefully handle failures in downstream services.
+59. **Request Body Modification**: Add functionality to modify or log request bodies before forwarding to downstream services.
+60. **Response Body Manipulation**: Modify the response body (e.g., for logging or transformation) before sending it back to the client.
+61. **Gateway Metrics**: Track and expose gateway-specific metrics like response time, status codes, and request volume.
+62. **Security Filters**: Implement additional filters for authentication, authorization, and encryption to secure the gateway.
+63. **Configuration via Application Properties**: Configure routing and filters through `application.yml` or `application.properties`.
+64. **WebSocket Support**: Enable support for WebSocket connections in the gateway for real-time communication.
+65. **Cross-Origin Resource Sharing (CORS)**: Configure CORS filters in the gateway to manage cross-origin requests securely.
+66. **Path Matching**: Implement flexible path matching to route requests to different services based on the URL pattern.
+67. **Custom Error Responses**: Define custom error handling for specific exceptions or error scenarios.
+68. **Conditional Route Execution**: Enable conditional route execution based on specific request attributes (e.g., headers or query parameters).
+69. **Access Logs**: Implement access logs to track incoming and outgoing requests for auditing or debugging purposes.
+70. **Debugging Filters**: Add custom filters for debugging and tracing request flows throughout the gateway.
+
+These steps expand on the existing functionality of the gateway, introducing advanced features and configurations for scalability, security, and performance.

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: micro-arch-health
+  profiles:
+    active: dev
+
+# Enable Spring Boot Actuator to expose health endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+# Custom configurations for Actuator health checks
+  health:
+    diskspace:
+      enabled: true
+      path: /
+      threshold: 10MB
+    mongodb:
+      enabled: true
+    db:
+      enabled: true

@@ -1,0 +1,53 @@
+Here are 50 one-liner steps describing how the `micro-arch-log` module works:
+
+1. The `micro-arch-log` module initializes log aggregation and configuration for a microservice.
+2. It uses Spring Boot’s logging system, powered by Logback for logging configuration.
+3. The `LogAggregator.java` class handles the central logic for logging aggregation.
+4. The module is configured to handle multiple log levels like INFO, DEBUG, and ERROR.
+5. Log entries are written both to the console and to log files.
+6. The `LogConfig.java` class manages the log configuration settings.
+7. The `logback-spring.xml` file is used to configure logging appenders and patterns.
+8. Application logs are stored in the `logs` directory of the project.
+9. The module supports rolling file appenders, which rotate logs daily.
+10. Log files are named based on the date (`application-yyyy-MM-dd.log`).
+11. The total log size is capped at 10GB, preventing excessive disk usage.
+12. Old log files are retained for a maximum of 30 days.
+13. It uses the Spring Profile feature to configure different log settings for `dev` and `prod` environments.
+14. In development, logs are printed to the console with a detailed format.
+15. In production, logs are written to files with a simpler format.
+16. Logback’s rolling policy ensures logs are archived daily.
+17. Console logging is enabled in the development profile for easy troubleshooting.
+18. File-based logging is enabled in both profiles to retain logs for later analysis.
+19. Spring’s default logging levels are used, with overrides for specific packages or classes.
+20. The root logger is set to `INFO` level for general log entries.
+21. Additional loggers can be configured for specific packages like `com.microservices.logs`.
+22. The module ensures proper logging for health check-related events.
+23. Custom loggers can be added to capture logs from specific components.
+24. Application startup logs are captured to help with initial diagnostics.
+25. Log entries include timestamps to provide precise event ordering.
+26. Error logs are captured with details for debugging application issues.
+27. Debug-level logs provide fine-grained details during development.
+28. Information-level logs capture high-level application flow.
+29. Warnings are logged for potential issues that don’t halt the application.
+30. Error-level logs are used to log critical application failures.
+31. The log pattern is configurable using properties like `LOG_PATTERN` in `logback-spring.xml`.
+32. The log pattern includes the date, log level, logger name, and message.
+33. The log pattern format is customizable for different log destinations (console/file).
+34. Logback configuration supports conditional log formats based on the environment.
+35. The module leverages Spring Boot’s dependency injection for configuring loggers.
+36. Application performance issues are monitored through detailed logging.
+37. The logback configuration uses `springProfile` elements to change log settings by environment.
+38. Spring’s built-in `actuator` module is used for health checks and log monitoring.
+39. The module uses `Slf4j` as the logging facade, ensuring flexibility across libraries.
+40. The `logback-spring.xml` configuration is automatically detected by Spring Boot.
+41. Error and exception stack traces are captured in the logs for easier debugging.
+42. Logging configuration is separated into manageable files (`logback-spring.xml`).
+43. The log module is easily configurable without requiring changes to application code.
+44. Specific loggers are set up for critical modules such as `com.microservices.health`.
+45. The logging configuration supports both system-wide and module-specific loggers.
+46. Logger levels can be dynamically adjusted depending on the environment.
+47. The module integrates with Spring Boot’s `@Profile` annotation for environment-specific logging.
+48. All logging configurations are managed centrally through the `logback-spring.xml` file.
+49. The log module ensures proper log management with advanced features like log rotation.
+50. The logging configuration is designed for scalability, handling large-scale microservices applications.
+

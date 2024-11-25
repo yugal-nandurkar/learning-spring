@@ -1,0 +1,42 @@
+Distributed Tracing in Microservices: A Deep Dive into micro-arch-tracer
+Module 1: Module Setup & Dependencies
+In modern distributed systems, microservices have emerged as a crucial architectural pattern. One of the key challenges in microservice architectures is tracking the flow of requests as they pass through various services. This is where distributed tracing comes into play, providing a way to trace the path of a request across multiple services, helping developers monitor performance and diagnose issues. The first step in implementing distributed tracing is to configure the necessary module and dependencies.
+
+In our case, the micro-arch-tracer module is the key component for adding distributed tracing capabilities. The initial setup involves incorporating OpenTelemetry dependencies into the project’s build configuration (such as pom.xml or build.gradle). OpenTelemetry is a powerful toolkit that enables collection of trace data across services. The first step is to add these dependencies to the project, which brings in the OpenTelemetry SDKs, such as the OTLP exporter, that are responsible for sending trace data to backend observability tools.
+
+Next, a Tracing configuration class is created to initialize OpenTelemetry. This class defines the tracer provider using SdkTracerProvider, which connects the trace processor to the exporter. By using the SimpleSpanProcessor, traces are collected and forwarded efficiently to external monitoring services. An endpoint for the OTLP exporter (e.g., http://localhost:4317) is configured to ensure trace data is exported properly. These initial configuration steps set the foundation for the entire tracing system, ensuring that trace data flows correctly through the microservices.
+
+Module 2: Trace Initialization & Configuration
+Once the foundational setup is complete, the next step is to dive into trace initialization and configuration. This stage focuses on making the tracing feature an integral part of the business logic and application flow.
+
+In this phase, a TraceService is created to implement traceable business logic. For each operation or request, a span is created using the Tracer.spanBuilder(). This span represents a unit of work and helps track the lifecycle of a request as it moves through the system. Spans contain vital information, including the start time, operation name, and any metadata such as input and output parameters. These attributes enrich the trace and allow detailed analysis of the operation.
+
+The span lifecycle is managed through simple calls: span.end() marks the completion of the operation, ensuring proper closure and sending the span to the exporter. Additionally, tracing configuration is extended to the application.yml file, where environment-specific settings are configured, such as the service name (e.g., tracing-service). This makes the application traceable and identifiable across different environments. Sampling strategies, such as enabling full sampling for testing purposes, are also configured during this step to optimize the trace volume.
+
+Furthermore, integrating Spring Actuator enables real-time monitoring of system metrics, which includes tracing data. It allows the tracing system to be actively monitored for performance, with health checks and trace reporting made available for developers and system operators. By adding TracingUtils, reusable tracing methods are centralized, ensuring that spans are created and closed efficiently across different services.
+
+Module 3: Span Handling & Application Logic
+As the tracing infrastructure takes shape, the next step focuses on how to use spans effectively within the application’s core logic. This involves integrating tracing into the flow of service interactions and ensuring that key events are captured in a structured manner. With the trace infrastructure in place, it’s time to handle the operational flow and ensure that spans are utilized effectively within the business logic.
+
+In this step, a TraceController is developed to expose REST endpoints for tracing operations. When a request hits the system, a corresponding span is started, capturing the incoming request and its parameters as trace attributes. The span is then updated with the response, ensuring the full lifecycle of the request is captured in the trace.
+
+Exception handling is another key aspect of trace management. To ensure that errors are logged and tracked, the GlobalExceptionHandler class is used to catch exceptions globally. Using Span.current(), the active span is retrieved, and any exceptions encountered during the request are recorded in the trace. This provides a clear and detailed log of errors, enabling developers to debug issues more effectively.
+
+By integrating tracing into core business logic, developers gain visibility into both the successful operations and failures, with detailed diagnostic information stored within the traces. The tracing system doesn’t just track requests but ensures that each step, from input processing to output delivery, is logged and available for analysis.
+
+Module 4: Testing & Integration
+Once the tracing infrastructure is built and integrated into the application logic, the next step is to ensure the system works as expected through rigorous testing. Testing is crucial to verify that spans are properly created, recorded, and exported, and that the system is operating as designed.
+
+To validate the functionality of the tracing system, unit tests are written for key components such as TraceService. Using a mock OpenTelemetry SDK, these tests ensure that spans are created correctly when business logic is executed. Attributes like input and output are validated during tests to confirm that traces are enriched with the correct data. Integration tests are then used to simulate real-world requests to REST endpoints, ensuring that spans are generated for every request and that the trace data is exported properly to the backend observability tool.
+
+Once the unit and integration tests are complete, the system can be deployed locally or in a containerized environment for further validation. The OpenTelemetry Collector plays a key role in processing and forwarding trace data to backend systems such as Jaeger or Zipkin. The setup ensures that the traces are visible in the observability tool, allowing developers to monitor the system and understand the flow of requests across different services.
+
+Module 5: Distributed Tracing & Context Propagation
+The final step in the tracing journey is to ensure that the tracing system works efficiently across the entire distributed system. As microservices are inherently distributed, it’s important to ensure that context is propagated correctly between services.
+
+In a distributed environment, the key challenge is to maintain the correlation of requests as they travel between services. OpenTelemetry provides tools like context propagation to ensure that the trace context, which includes the trace ID and span ID, is passed along with each request. By using the context API, child spans can be created that link back to the parent span, providing a clear trace of the entire service flow.
+
+Middleware such as Spring filters can be used to capture and propagate trace context automatically for every incoming request, reducing manual intervention. This ensures that tracing is consistent across all services, even in large and complex architectures.
+
+The final touch involves linking logs with trace data. By correlating logs with trace IDs, developers can get a full picture of the request lifecycle, from log entries to trace spans. This integration helps developers monitor application performance and troubleshoot issues efficiently.
+

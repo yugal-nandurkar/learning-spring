@@ -1,0 +1,13 @@
+health:
+  check:
+    diskspace:
+      enabled: true
+      path: /
+      threshold: 10MB
+    mongodb:
+      enabled: true
+    db:
+      enabled: true
+    custom:
+      enabled: true
+      url: "http://localhost:8080/health"
